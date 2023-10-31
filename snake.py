@@ -110,6 +110,16 @@ class Snake:
         if self.head.heading() != UP:
             self.head.setheading(DOWN)
 
+    def reset(self):
+        for position in self.turtle_cage:
+            position.goto(500, 500)
+        self.turtle_cage.clear()
+        self.create_snake()
+        self.head = self.turtle_cage[0]
+        
+
+
+
     
         
         

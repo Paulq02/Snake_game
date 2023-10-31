@@ -46,6 +46,7 @@ screen.onkey(snake.up,"Up")
 game_on = True
 
 while game_on:
+    score.update_scoreboard()
     #sleep slows/speeds the snake movement
     time.sleep(0.1)
     #update is called once the animations take place
@@ -58,17 +59,37 @@ while game_on:
         food.refresh_food()
         score.add_one()
         snake.extend_snake()
+        score.reset()
+        
+        
+        
         
     #If the snake head goes past the wall boundries set the game_over method is called and while loop stops
     if snake.head.xcor() < LEFT_WALL or snake.head.xcor() > RIGHT_WALL or snake.head.ycor() > TOP_WALL or snake.head.ycor() < BOTTOM_WALL:
-        score.game_over()
-        game_on = False
+        score.reset()
+        snake.reset()
+        food.refresh_food()
+        score.score = 0
+        
+
+    
+        
+       
+        
+        
 
     #A for loop is run constanly comparing the snake head distance to the rest of the body, if its within 10 pixels a collision is detected and the game ends
     for position in snake.turtle_cage[1:]:
         if snake.head.distance(position) < 10:
-            game_on = False
-            score.game_over()
+           score.reset()
+           snake.reset()
+           score.score = 0
+           
+           
+           
+           
+           
+            
 
     
     
